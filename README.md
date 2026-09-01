@@ -15,9 +15,7 @@
 
 ### **Bước 2: Bật tính năng "Custom New Tab Page" trên trình duyệt**
 1. Mở trình duyệt Chromium của bạn và truy cập đường dẫn:
-   ```text
-   chrome://flags/
-   ```
+   [**chrome://flags/**](chrome://flags/)
 2. Tại ô tìm kiếm, nhập từ khóa: **`Custom New Tab Page`**
 3. Chuyển trạng thái của tính năng này từ **Default / Disabled** sang **Enabled** (Bật).
 
@@ -31,11 +29,7 @@
 2. Dán địa chỉ URL của file `index.html` (đã sao chép ở Bước 3) vào ô nhập liệu của tùy chọn Custom New Tab Page.
 3. Relaunch (Khởi động lại) trình duyệt để áp dụng thay đổi.
 
----
 
-🎉 **Hoàn tất!** Giờ đây mỗi khi bạn mở một Tab mới, trình duyệt sẽ hiển thị giao diện video độc đáo từ **NewTabVideo**.
-
----
 
 ## 💡 Đóng Góp & Phản Hồi
 
