@@ -30,7 +30,7 @@
 1. Quay lại trang `chrome://flags/` tại mục **Custom New Tab Page** đã bật ở Bước 2.
 2. Dán địa chỉ URL của file `index.html` (đã sao chép ở Bước 3) vào ô nhập liệu của tùy chọn Custom New Tab Page.
 3. Relaunch (Khởi động lại) trình duyệt để áp dụng thay đổi.
-
+<video src="video.mov" controls width="100%"></video>
 
 
 ## 💡 Đóng Góp & Phản Hồi
