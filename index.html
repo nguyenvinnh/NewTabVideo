@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab mới</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <video id="bg-video" autoplay muted loop></video>
+
+    <div id="main-container" class="container">
+        <form id="search-form" action="https://www.google.com/search" method="get">
+            <input type="hidden" id="safe-search-input" name="safe" value="active">
+            <div class="search-wrapper">
+                <input type="text" id="search-input" name="q" class="search-box" placeholder="Tìm kiếm trên Google..."
+                    autofocus autocomplete="off">
+                <button type="button" id="clear-btn" class="clear-btn" title="Xóa tất cả">×</button>
+                <button type="button" id="settings-btn" class="settings-btn" title="Cài đặt" onclick="toggleSettingsMenu(event)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87c-0.11,0.2-0.06,0.47,0.12,0.61l2.03,1.58c-0.05,0.3-0.07,0.62-0.07,0.94s0.02,0.64,0.07,0.94l-2.03,1.58c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.11-0.2,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" />
+                    </svg>
+                </button>
+                <div id="suggestions" class="suggestions-box"></div>
+            </div>
+        </form>
+
+        <div class="settings-dropdown" id="settings-menu">
+            <button class="menu-item" onclick="document.getElementById('bg-file-input').click()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                Thay đổi hình nền
+            </button>
+            <button class="menu-item" id="safe-search-btn" onclick="toggleSafeSearch()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Tắt lọc tìm kiếm
+            </button>
+            <button class="menu-item" id="lock-pos-btn" onclick="toggleLockPosition()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                Khóa vị trí: Tắt
+            </button>
+            <button class="menu-item" id="mute-btn" onclick="toggleMute()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                Tắt tiếng video
+            </button>
+            <div class="menu-divider"></div>
+            <div class="menu-section-title">Vị trí thanh tìm kiếm</div>
+            <div class="position-grid">
+                <button class="pos-btn" onclick="moveContainer('top-left')" title="Góc trên trái">↖</button>
+                <button class="pos-btn" onclick="moveContainer('top')" title="Trên">↑</button>
+                <button class="pos-btn" onclick="moveContainer('top-right')" title="Góc trên phải">↗</button>
+                <button class="pos-btn" onclick="moveContainer('left')" title="Trái">←</button>
+                <button class="pos-btn pos-btn-center" onclick="moveContainer('center')" title="Căn giữa">🎯</button>
+                <button class="pos-btn" onclick="moveContainer('right')" title="Phải">→</button>
+                <button class="pos-btn" onclick="moveContainer('bottom-left')" title="Góc dưới trái">↙</button>
+                <button class="pos-btn" onclick="moveContainer('bottom')" title="Dưới">↓</button>
+                <button class="pos-btn" onclick="moveContainer('bottom-right')" title="Góc dưới phải">↘</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="bg-file-input" accept="image/*,video/*" onchange="handleFileSelect(event)">
+
+    <script src="js/config.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/position.js"></script>
+    <script src="js/drag.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

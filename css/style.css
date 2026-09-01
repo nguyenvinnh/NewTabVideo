@@ -1,0 +1,302 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transition: background-image 0.5s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+#bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    display: none;
+}
+
+/* ========== CONTAINER MAIN ========== */
+.container {
+    position: absolute;
+    text-align: center;
+    width: min(460px, calc(100vw - 30px));
+    max-width: calc(100vw - 30px);
+    z-index: 10;
+    transform: none;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.search-box {
+    width: 100%;
+    padding: 13px 82px 13px 20px;
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    background-color: rgba(30, 30, 30, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff;
+    outline: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.search-box:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 16px rgba(76, 175, 80, 0.35);
+    background-color: rgba(30, 30, 30, 0.9);
+}
+
+/* Clear button */
+.clear-btn {
+    position: absolute;
+    right: 46px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: none;
+    padding: 4px;
+    line-height: 1;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.clear-btn:hover {
+    color: #fff;
+    transform: scale(1.15);
+}
+
+/* Settings icon button inside search bar */
+.settings-btn {
+    position: absolute;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.25s ease;
+}
+
+.settings-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: rotate(30deg);
+}
+
+.settings-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* ========== SUGGESTIONS BOX ========== */
+.suggestions-box {
+    position: absolute;
+    top: calc(100% + 8px);
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    background-color: rgba(25, 25, 25, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    display: none;
+    overflow: hidden;
+    text-align: left;
+}
+
+.suggestions-box.open-above {
+    top: auto;
+    bottom: calc(100% + 8px);
+}
+
+.suggestion-item {
+    padding: 11px 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #e0e0e0;
+    transition: background 0.15s ease;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+/* ========== SETTINGS DROPDOWN MENU ========== */
+.settings-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    bottom: auto;
+    right: 0;
+    width: 250px;
+    background: rgba(25, 25, 25, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    z-index: 30;
+    text-align: left;
+    transform-origin: top right;
+    animation: fadeInScale 0.18s ease-out forwards;
+}
+
+.settings-dropdown.open-above {
+    top: auto;
+    bottom: calc(100% + 8px);
+    transform-origin: bottom right;
+    animation: fadeInScaleUp 0.18s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.settings-dropdown.show {
+    display: flex;
+}
+
+.menu-item {
+    background: transparent;
+    color: #e0e0e0;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.menu-item svg {
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+
+.menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 6px 0;
+}
+
+.menu-section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 6px 12px 4px;
+}
+
+/* Grid cho vị trí */
+.position-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 4px 6px 6px;
+}
+
+.pos-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: #e0e0e0;
+    padding: 8px 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.pos-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.pos-btn-center {
+    font-size: 0.8rem;
+}
+
+/* Container dragging state */
+.container.draggable {
+    cursor: grab;
+    user-select: none;
+}
+
+.container.draggable:active {
+    cursor: grabbing;
+}
+
+#bg-file-input {
+    display: none;
+}
