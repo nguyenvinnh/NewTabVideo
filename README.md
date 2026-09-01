@@ -20,6 +20,7 @@
    ```
 2. Tại ô tìm kiếm, nhập từ khóa: **`Custom New Tab Page`**
 3. Chuyển trạng thái của tính năng này từ **Default / Disabled** sang **Enabled** (Bật).
+   ![](demo/img.png)
 
 ### **Bước 3: Lấy URL file `index.html`**
 1. Tìm đến thư mục bạn vừa giải nén ở **Bước 1**.
@@ -30,7 +31,7 @@
 1. Quay lại trang `chrome://flags/` tại mục **Custom New Tab Page** đã bật ở Bước 2.
 2. Dán địa chỉ URL của file `index.html` (đã sao chép ở Bước 3) vào ô nhập liệu của tùy chọn Custom New Tab Page.
 3. Relaunch (Khởi động lại) trình duyệt để áp dụng thay đổi.
-<video src="video.mov" controls width="100%"></video>
+   ![](demo/video.gif)
 
 
 ## 💡 Đóng Góp & Phản Hồi
