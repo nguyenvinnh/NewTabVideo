@@ -15,7 +15,9 @@
 
 ### **Bước 2: Bật tính năng "Custom New Tab Page" trên trình duyệt**
 1. Mở trình duyệt Chromium của bạn và truy cập đường dẫn:
-   [**chrome://flags/**](chrome://flags/)
+   ```text
+   chrome://flags/
+   ```
 2. Tại ô tìm kiếm, nhập từ khóa: **`Custom New Tab Page`**
 3. Chuyển trạng thái của tính năng này từ **Default / Disabled** sang **Enabled** (Bật).
 
